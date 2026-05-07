@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bahiano Games</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0b0f1a;
+  color:white;
+}
+
+/* HEADER */
+
+header{
+  background:linear-gradient(90deg,#00ff88,#00bfff);
+  padding:25px;
+  text-align:center;
+  color:#000;
+}
+
+.logo{
+  width:260px;
+  max-width:90%;
+  display:block;
+  margin:0 auto 15px;
+}
+
+header h1{
+  font-size:42px;
+}
+
+header p{
+  margin-top:5px;
+}
+
+/* MENU */
+
+nav{
+  background:#131c2e;
+  padding:15px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:0 15px;
+  font-weight:600;
+}
+
+nav a:hover,
+nav a:focus{
+  color:#00ff88;
+  outline:2px solid #00ff88;
+  padding:5px;
+  border-radius:6px;
+}
+
+/* CONTAINER */
+
+.container{
+  width:92%;
+  max-width:1400px;
+  margin:auto;
+  padding:40px 0;
+}
+
+.section-title{
+  font-size:30px;
+  margin-bottom:25px;
+  color:#00ff88;
+}
+
+/* CARDS */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:#131c2e;
+  border-radius:20px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:20px;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.descricao{
+  color:#aaa;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+.preco{
+  font-size:28px;
+  color:#00ff88;
+  margin-bottom:15px;
+  font-weight:700;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  font-family:'Poppins';
+}
+
+.add{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#00ff88,#00bfff);
+  color:black;
+  font-weight:700;
+}
+
+.add:hover,
+.add:focus{
+  outline:2px solid white;
+}
+
+/* CARRINHO */
+
+.carrinho{
+  margin-top:60px;
+  background:#131c2e;
+  padding:25px;
+  border-radius:20px;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#0f1727;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.cart-info{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.cart-info img{
+  width:80px;
+  height:50px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.remove{
+  background:red;
+  color:white;
+  padding:10px;
+  border-radius:8px;
+}
+
+.total{
+  margin-top:25px;
+  font-size:30px;
+  color:#00ff88;
+}
+
+.finalizar{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  margin-top:20px;
+  background:linear-gradient(90deg,#00ff88,#00bfff);
+  color:black;
+  font-size:18px;
+  font-weight:700;
+}
+
+/* CONTATO */
+
+form{
+  background:#131c2e;
+  padding:25px;
+  border-radius:20px;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  margin-bottom:20px;
+  border:none;
+  border-radius:10px;
+  background:#0f1727;
+  color:white;
+}
+
+textarea{
+  resize:none;
+  height:120px;
+}
+
+.enviar{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  background:#00ff88;
+  font-weight:700;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-box{
+  background:#131c2e;
+  width:400px;
+  padding:25px;
+  border-radius:20px;
+}
+
+.pagamento{
+  background:#0f1727;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+  cursor:pointer;
+}
+
+.pagamento:hover{
+  border:2px solid #00ff88;
+}
+
+.ativo{
+  border:2px solid #00ff88;
+}
+
+.codigo{
+  margin-top:10px;
+  background:black;
+  padding:10px;
+  border-radius:10px;
+  color:#00ff88;
+}
+
+.confirmar{
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  border-radius:12px;
+  background:#00ff88;
+  font-weight:700;
+}
+
+.fechar{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border-radius:12px;
+  background:#333;
+  color:white;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:30px;
+  margin-top:60px;
+  color:#777;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:320px){
+
+header h1{
+  font-size:28px;
+}
+
+.section-title{
+  font-size:24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header id="home">
+
+<img src="games.bahia.png" alt="Bahiano Games Logo" class="logo">
+
+<h1>🎮 Bahiano Games</h1>
+<p>Os melhores jogos com os menores preços</p>
+
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#jogos">Jogos</a>
+<a href="#carrinho">Carrinho</a>
+<a href="#contato">Contato</a>
+</nav>
+
+<div class="container">
+
+<!-- JOGOS -->
+
+<section id="jogos">
+
+<h2 class="section-title">🔥 Jogos Populares</h2>
+
+<div class="cards" id="cards"></div>
+
+</section>
+
+<!-- CARRINHO -->
+
+<section class="carrinho" id="carrinho">
+
+<h2 class="section-title">
+🛒 Seu Carrinho (<span id="contador">0</span>)
+</h2>
+
+<div id="cart"></div>
+
+<div class="total">
+Total: R$ <span id="total">0.00</span>
+</div>
+
+<button class="finalizar" onclick="abrirModal()">
+Finalizar Compra 💳
+</button>
+
+</section>
+
+<!-- CONTATO -->
+
+<section id="contato" style="margin-top:60px;">
+
+<h2 class="section-title">📩 Contato</h2>
+
+<form>
+
+<label for="nome">Nome</label>
+<input type="text" id="nome" required>
+
+<label for="email">Email</label>
+<input type="email" id="email" required>
+
+<label for="mensagem">Mensagem</label>
+<textarea id="mensagem" required></textarea>
+
+<button class="enviar">
+Enviar Mensagem
+</button>
+
+</form>
+
+</section>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<h2>💳 Escolha o pagamento</h2>
+
+<h3 style="margin-top:10px;">
+Total: R$ <span id="valorFinal"></span>
+</h3>
+
+<div class="pagamento" onclick="selecionarPagamento('pix')" id="pix">
+<h3>⚡ PIX</h3>
+<div class="codigo">pix@bahianogames.com</div>
+</div>
+
+<div class="pagamento" onclick="selecionarPagamento('boleto')" id="boleto">
+<h3>📄 Boleto</h3>
+<div class="codigo">34191.79001 01043.510047</div>
+</div>
+
+<div class="pagamento" onclick="selecionarPagamento('cartao')" id="cartao">
+<h3>💳 Cartão</h3>
+<div class="codigo">Visa • Mastercard • Elo</div>
+</div>
+
+<button class="confirmar" id="btnConfirmar" disabled onclick="confirmar()">
+Confirmar Pagamento
+</button>
+
+<button class="fechar" onclick="fecharModal()">
+Fechar
+</button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Bahiano Games
+</footer>
+
+<script>
+
+const jogos = [
+
+{
+id:1,
+nome:"GTA V",
+preco:59.90,
+img:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",
+desc:"Mundo aberto cheio de ação."
+},
+
+{
+id:2,
+nome:"Resident Evil 4",
+preco:89.90,
+img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg",
+desc:"Terror e sobrevivência."
+},
+
+{
+id:3,
+nome:"Red Dead Redemption 2",
+preco:299.90,
+img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg",
+desc:"Velho oeste incrível."
+},
+
+{
+id:4,
+nome:"God of War",
+preco:249.90,
+img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg",
+desc:"Kratos em jornada épica."
+},
+
+{
+id:5,
+nome:"Forza Horizon 5",
+preco:199.90,
+img:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg",
+desc:"Corridas realistas."
+},
+
+{
+id:6,
+nome:"The Binding of Isaac",
+preco:39.90,
+img:"https://cdn.akamai.steamstatic.com/steam/apps/113200/header.jpg",
+desc:"Roguelike de ação."
+}
+
+];
+
+const cards = document.getElementById("cards");
+const cart = document.getElementById("cart");
+const totalEl = document.getElementById("total");
+const contador = document.getElementById("contador");
+
+let carrinho = [];
+let metodoSelecionado = null;
+
+function renderGames(){
+
+  jogos.forEach(game=>{
+
+    cards.innerHTML += `
+    
+    <div class="card">
+
+      <img src="${game.img}" alt="${game.nome}">
+
+      <div class="card-content">
+
+        <h3>${game.nome}</h3>
+
+        <p class="descricao">${game.desc}</p>
+
+        <div class="preco">
+        R$ ${game.preco.toFixed(2)}
+        </div>
+
+        <button class="add" onclick="adicionar(${game.id})">
+        Adicionar ao Carrinho
+        </button>
+
+      </div>
+
+    </div>
+
+    `;
+
+  });
+
+}
+
+function adicionar(id){
+
+  const game = jogos.find(j=>j.id===id);
+
+  carrinho.push(game);
+
+  atualizarCarrinho();
+
+}
+
+function remover(index){
+
+  carrinho.splice(index,1);
+
+  atualizarCarrinho();
+
+}
+
+function atualizarCarrinho(){
+
+  cart.innerHTML = "";
+
+  let total = 0;
+
+  carrinho.forEach((item,index)=>{
+
+    total += item.preco;
+
+    cart.innerHTML += `
+
+    <div class="cart-item">
+
+      <div class="cart-info">
+
+        <img src="${item.img}" alt="${item.nome}">
+
+        <div>
+
+          <h4>${item.nome}</h4>
+
+          <p>R$ ${item.preco.toFixed(2)}</p>
+
+        </div>
+
+      </div>
+
+      <button class="remove" onclick="remover(${index})">
+      X
+      </button>
+
+    </div>
+
+    `;
+
+  });
+
+  totalEl.innerText = total.toFixed(2);
+
+  contador.innerText = carrinho.length;
+
+}
+
+function abrirModal(){
+
+  if(carrinho.length === 0){
+
+    alert("Carrinho vazio!");
+
+    return;
+
+  }
+
+  document.getElementById("modal").style.display = "flex";
+
+  document.getElementById("valorFinal").innerText = totalEl.innerText;
+
+}
+
+function fecharModal(){
+
+  document.getElementById("modal").style.display = "none";
+
+  metodoSelecionado = null;
+
+  document.querySelectorAll(".pagamento").forEach(p=>{
+
+    p.classList.remove("ativo");
+
+  });
+
+  document.getElementById("btnConfirmar").disabled = true;
+
+}
+
+function selecionarPagamento(tipo){
+
+  metodoSelecionado = tipo;
+
+  document.querySelectorAll(".pagamento").forEach(p=>{
+
+    p.classList.remove("ativo");
+
+  });
+
+  document.getElementById(tipo).classList.add("ativo");
+
+  document.getElementById("btnConfirmar").disabled = false;
+
+}
+
+function confirmar(){
+
+  alert("✅ Pagamento realizado com sucesso!");
+
+  carrinho = [];
+
+  atualizarCarrinho();
+
+  fecharModal();
+
+}
+
+renderGames();
+
+</script>
+
+</body>
+</html>
